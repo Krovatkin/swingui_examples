@@ -31,7 +31,7 @@ public class ComboBoxDemo2 extends JPanel
         JLabel patternLabel1 = new JLabel("Enter the pattern string or");
         JLabel patternLabel2 = new JLabel("select one from the list:");
 
-        JComboBox patternList = new JComboBox(patternExamples);
+        var patternList = new JComboBox<String>(patternExamples);
         patternList.setEditable(true);
         patternList.addActionListener(this);
 
@@ -71,9 +71,10 @@ public class ComboBoxDemo2 extends JPanel
     } //constructor
 
     public void actionPerformed(ActionEvent e) {
-        JComboBox cb = (JComboBox)e.getSource();
+        var cb = (JComboBox<String>)e.getSource();
         String newSelection = (String)cb.getSelectedItem();
         currentPattern = newSelection;
+        cb.addItem(newSelection);
         reformat();
     }
 
