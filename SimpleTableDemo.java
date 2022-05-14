@@ -2,6 +2,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.TableColumn;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
@@ -35,6 +37,17 @@ public class SimpleTableDemo extends JPanel {
         final JTable table = new JTable(data, columnNames);
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
+
+        // Set preferred widths
+        TableColumn column = null;
+        for (int i = 0; i < 5; i++) {
+            column = table.getColumnModel().getColumn(i);
+            if (i == 2) {
+                column.setPreferredWidth(100); //third column is bigger
+            } else {
+                column.setPreferredWidth(50);
+            }
+        }
 
         if (DEBUG) {
             table.addMouseListener(new MouseAdapter() {
