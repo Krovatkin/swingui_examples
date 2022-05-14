@@ -47,7 +47,16 @@ public class SimpleTableDemo extends JPanel {
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
 
-        //Add the scroll pane to this panel.
+        //The scroll pane automatically places the table header at the top of the viewport.
+        /*
+        
+        If you are using a table without a scroll pane, then you must get the table header component 
+        and place it yourself. For example:
+            container.setLayout(new BorderLayout());
+            container.add(table.getTableHeader(), BorderLayout.PAGE_START);
+            container.add(table, BorderLayout.CENTER);
+        */
+
         add(scrollPane);
     }
 
@@ -67,11 +76,6 @@ public class SimpleTableDemo extends JPanel {
         System.out.println("--------------------------");
     }
 
-    /**
-     * Create the GUI and show it.  For thread safety,
-     * this method should be invoked from the
-     * event-dispatching thread.
-     */
     private static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("SimpleTableDemo");
