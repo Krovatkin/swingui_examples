@@ -23,15 +23,15 @@ public class SimpleTableDemo extends JPanel {
 
         Object[][] data = {
 	    {"Kathy", "Smith",
-	     "Snowboarding", new Integer(5), new Boolean(false)},
+	     "Snowboarding", Integer.valueOf(5), false},
 	    {"John", "Doe",
-	     "Rowing", new Integer(3), new Boolean(true)},
+	     "Rowing", Integer.valueOf(3), true},
 	    {"Sue", "Black",
-	     "Knitting", new Integer(2), new Boolean(false)},
+	     "Knitting", Integer.valueOf(2), false},
 	    {"Jane", "White",
-	     "Speed reading", new Integer(20), new Boolean(true)},
+	     "Speed reading", Integer.valueOf(20), true},
 	    {"Joe", "Brown",
-	     "Pool", new Integer(10), new Boolean(false)}
+	     "Pool", Integer.valueOf(10), false}
         };
 
         final JTable table = new JTable(data, columnNames);
