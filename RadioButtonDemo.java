@@ -80,6 +80,8 @@ public class RadioButtonDemo extends JPanel
 
     /** Listens to the radio buttons. */
     public void actionPerformed(ActionEvent e) {
+
+         // command comes from JRadioButtion.text (catString, birdString)
         picture.setIcon(createImageIcon("animals/"
                                         + e.getActionCommand()
                                         + ".gif"));
