@@ -59,6 +59,10 @@ public class SimpleTableDemo2 extends JPanel implements TableModelListener {
                 super.setValueAt(value, row, col);
             }
 
+            public Class getColumnClass(int c) {
+                return getValueAt(0, c).getClass();
+            }
+
         };
         final JTable table = new JTable(tm);
         table.getModel().addTableModelListener(this);
