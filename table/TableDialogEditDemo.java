@@ -95,15 +95,15 @@ public class TableDialogEditDemo extends JPanel {
                                         "Vegetarian"};
         private Object[][] data = {
             {"Mary", new Color(153, 0, 153),
-             "Snowboarding", new Integer(5), new Boolean(false)},
+             "Snowboarding", Integer.valueOf(5), false},
             {"Alison", new Color(51, 51, 153),
-             "Rowing", new Integer(3), new Boolean(true)},
+             "Rowing", Integer.valueOf(3), true},
             {"Kathy", new Color(51, 102, 51),
-             "Knitting", new Integer(2), new Boolean(false)},
+             "Knitting", Integer.valueOf(2), false},
             {"Sharon", Color.red,
-             "Speed reading", new Integer(20), new Boolean(true)},
+             "Speed reading", Integer.valueOf(20), true},
             {"Philip", Color.pink,
-             "Pool", new Integer(10), new Boolean(false)}
+             "Pool", Integer.valueOf(10), false}
         };
 
         public int getColumnCount() {
