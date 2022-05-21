@@ -44,7 +44,7 @@ public class PopupMenuDemo implements ActionListener, ItemListener {
     public void createPopupMenu() {
         JMenuItem menuItem;
 
-        //Create the popup menu.
+        // the default left-to-right BoxLayout
         JPopupMenu popup = new JPopupMenu();
         menuItem = new JMenuItem("A popup menu item");
         menuItem.addActionListener(this);
@@ -89,11 +89,6 @@ public class PopupMenuDemo implements ActionListener, ItemListener {
         return classString.substring(dotIndex+1);
     }
 
-    /**
-     * Create the GUI and show it.  For thread safety,
-     * this method should be invoked from the
-     * event-dispatching thread.
-     */
     private static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("PopupMenuDemo");

@@ -26,7 +26,7 @@ public class MenuLookDemo {
         JRadioButtonMenuItem rbMenuItem;
         JCheckBoxMenuItem cbMenuItem;
 
-        //Create the menu bar.
+        // the default left-to-right BoxLayout
         menuBar = new JMenuBar();
 
         //Build the first menu.

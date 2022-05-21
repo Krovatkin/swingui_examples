@@ -14,18 +14,13 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JFrame;
 
-/* MenuDemo.java requires images/middle.gif. */
-
-/*
- * This class is just like MenuLookDemo, except the menu items
- * actually do something, thanks to event listeners.
- */
 public class MenuDemo implements ActionListener, ItemListener {
     JTextArea output;
     JScrollPane scrollPane;
     String newline = "\n";
 
     public JMenuBar createMenuBar() {
+        // the default left-to-right BoxLayout
         JMenuBar menuBar;
         JMenu menu, submenu;
         JMenuItem menuItem;

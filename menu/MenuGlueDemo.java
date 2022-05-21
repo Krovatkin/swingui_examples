@@ -2,13 +2,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-/**
- * @author ges
- * @author kwalrath
- */
-/* MenuGlueDemo.java requires no other files. */
 public class MenuGlueDemo {
     public JMenuBar createMenuBar() {
+        // the default left-to-right BoxLayout
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(createMenu("Menu 1"));
         menuBar.add(createMenu("Menu 2"));
