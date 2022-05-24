@@ -55,6 +55,7 @@ public class JFileChooserDemo extends JPanel
         if (e.getSource() == openButton) {
 
             int returnVal = fc.showOpenDialog(this);
+            fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
             var file = fc.getSelectedFile();
 
             if (returnVal == JFileChooser.APPROVE_OPTION) {
