@@ -2,59 +2,56 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
 import javax.swing.*;
-import javax.swing.filechooser.*;
 import javax.swing.SwingUtilities;
 
 public class JFileChooserDemo extends JPanel
-                                implements ActionListener {
+        implements ActionListener {
     static private final String newline = "\n";
     JButton openButton, saveButton;
     JTextArea log;
 
-    final JFileChooser fc  = new JFileChooser();
+    final JFileChooser fc = new JFileChooser();
 
     public JFileChooserDemo() {
         super(new BorderLayout());
 
-        //Create the log first, because the action listeners
-        //need to refer to it.
-        log = new JTextArea(5,20);
-        log.setMargin(new Insets(5,5,5,5));
+        // Create the log first, because the action listeners
+        // need to refer to it.
+        log = new JTextArea(5, 20);
+        log.setMargin(new Insets(5, 5, 5, 5));
         log.setEditable(false);
         JScrollPane logScrollPane = new JScrollPane(log);
 
-        //Create the open button.  We use the image from the JLF
-        //Graphics Repository (but we extracted it from the jar).
-        openButton = new JButton("Open a File...", 
-                                 createImageIcon("images/Open16.gif"));
+        // Create the open button. We use the image from the JLF
+        // Graphics Repository (but we extracted it from the jar).
+        openButton = new JButton("Open a File...",
+                createImageIcon("images/Open16.gif"));
         openButton.addActionListener(this);
 
-        //Create the save button.  We use the image from the JLF
-        //Graphics Repository (but we extracted it from the jar).
+        // Create the save button. We use the image from the JLF
+        // Graphics Repository (but we extracted it from the jar).
         saveButton = new JButton("Save a File...",
-                                 createImageIcon("images/Save16.gif"));
-        saveButton.addActionListener(this); 
+                createImageIcon("images/Save16.gif"));
+        saveButton.addActionListener(this);
 
-        //For layout purposes, put the buttons in a separate panel
+        // For layout purposes, put the buttons in a separate panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(openButton);
         buttonPanel.add(saveButton);
 
-        //Add the buttons and the log to this panel.
+        // Add the buttons and the log to this panel.
         add(buttonPanel, BorderLayout.PAGE_START);
         add(logScrollPane, BorderLayout.CENTER);
     }
 
     public void actionPerformed(ActionEvent e) {
 
-        //Handle open button action.
+        // Handle open button action.
         if (e.getSource() == openButton) {
 
             int returnVal = fc.showOpenDialog(this);
@@ -62,17 +59,21 @@ public class JFileChooserDemo extends JPanel
 
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 try {
-                    //This is where a real application would do something
-                    //with the file.
+                    // Count number of lines in the open file.
+                    try (var br = new BufferedReader(new FileReader(file))) {
+                        int lines = 0;
+                        while ((br.readLine()) != null) {
+                            lines++;
+                        }
 
-                    var br = new BufferedReader(new FileReader(file));
-                    javax.swing.JOptionPane.showMessageDialog(null, br.readLine());
-                    log.append("Opened file: " + file.getAbsolutePath()
-                               + "." + newline);
+                        javax.swing.JOptionPane.showMessageDialog(null, "Number of lines in the file:" + lines);
+                        log.append("Opened file: " + file.getAbsolutePath()
+                                + ". There are " + lines + " in the file." + newline);
+                    }
                 } catch (IOException exc) {
                     log.append("Problem opening file: "
-                               + exc.getLocalizedMessage()
-                               + newline);
+                            + exc.getLocalizedMessage()
+                            + newline);
                 }
             } else {
                 log.append("User canceled open request." + newline);
@@ -80,7 +81,7 @@ public class JFileChooserDemo extends JPanel
             log.setCaretPosition(log.getDocument().getLength());
         }
 
-        //Handle save button action.
+        // Handle save button action.
         if (e.getSource() == saveButton) {
             int returnVal = fc.showSaveDialog(this);
             var file = fc.getSelectedFile();
@@ -90,8 +91,8 @@ public class JFileChooserDemo extends JPanel
                     pw.print("Saved by JFileChooserDemo\n");
                 } catch (Exception exc) {
                     log.append("Save command failed: "
-                               + exc.getLocalizedMessage()
-                               + newline);
+                            + exc.getLocalizedMessage()
+                            + newline);
                     log.setCaretPosition(log.getDocument().getLength());
                 }
             } else {
@@ -113,29 +114,29 @@ public class JFileChooserDemo extends JPanel
     }
 
     /**
-     * Create the GUI and show it.  For thread safety,
+     * Create the GUI and show it. For thread safety,
      * this method should be invoked from the
      * event dispatch thread.
      */
     private static void createAndShowGUI() {
-        //Create and set up the window.
+        // Create and set up the window.
         JFrame frame = new JFrame("JFileChooserDemo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Add content to the window.
+        // Add content to the window.
         frame.add(new JFileChooserDemo());
 
-        //Display the window.
+        // Display the window.
         frame.pack();
         frame.setVisible(true);
     }
 
     public static void main(String[] args) {
-        //Schedule a job for the event dispatch thread:
-        //creating and showing this application's GUI.
+        // Schedule a job for the event dispatch thread:
+        // creating and showing this application's GUI.
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                //Turn off metal's use of bold fonts
+                // Turn off metal's use of bold fonts
                 UIManager.put("swing.boldMetal", Boolean.FALSE);
                 createAndShowGUI();
             }
