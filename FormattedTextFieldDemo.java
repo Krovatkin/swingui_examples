@@ -7,6 +7,30 @@ import java.beans.PropertyChangeEvent;
 
 import java.text.*;
 
+
+// A formatted text field's text and its value are two different properties, 
+// and the value often lags behind the text.
+
+// The text property is defined by the JTextField class. 
+// This property always reflects what the field displays. 
+// The value property, defined by the JFormattedTextField class, 
+// might not reflect the latest text displayed in the field. 
+// While the user is typing, the text property changes, 
+// but the value property does not change until the changes are committed.
+
+// The value of a formatted text field can be set 
+// by using either the setValue method or the commitEdit method
+
+// The commitEdit method sets the value to whatever object 
+// the formatter determines is represented by the field's text.
+// e.g. When the user presses Enter while the field has the focus.
+
+// When you set the value of a formatted text field, the field's text is updated to reflect the value. 
+// Exactly how the value is represented as text depends on the field's formatter.
+
+// To obtain a formatted text field's current value, use the getValue method. If necessary, you can ensure that the value reflects 
+// the text by calling the commitEdit method before getValue.
+
 public class FormattedTextFieldDemo extends JPanel
                                     implements PropertyChangeListener {
     //Values for the fields
@@ -81,14 +105,13 @@ public class FormattedTextFieldDemo extends JPanel
         numPeriodsLabel.setLabelFor(numPeriodsField);
         paymentLabel.setLabelFor(paymentField);
 
-        //Lay out the labels in a panel.
+
         JPanel labelPane = new JPanel(new GridLayout(0,1));
         labelPane.add(amountLabel);
         labelPane.add(rateLabel);
         labelPane.add(numPeriodsLabel);
         labelPane.add(paymentLabel);
 
-        //Layout the text fields in a panel.
         JPanel fieldPane = new JPanel(new GridLayout(0,1));
         fieldPane.add(amountField);
         fieldPane.add(rateField);
