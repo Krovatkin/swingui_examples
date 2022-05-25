@@ -142,7 +142,19 @@ public class TextInputDemo extends JPanel
         return sb.toString();
     }
 
-    //A convenience method for creating a MaskFormatter.
+
+    // https://docs.oracle.com/javase/tutorial/uiswing/components/formattedtextfield.html#maskformatter
+    
+    // Character    Description
+    // #    Any valid number (Character.isDigit).
+    // '    (single quote)    Escape character, used to escape any of the special formatting characters.
+    // U    Any character (Character.isLetter). All lowercase letters are mapped to uppercase.
+    // L    Any character (Character.isLetter). All uppercase letters are mapped to lowercase.
+    // A    Any character or number (Character.isLetter or Character.isDigit).
+    // ?    Any character (Character.isLetter).
+    // *    Anything.
+    // H    Any hex character (0-9, a-f or A-F).
+
     protected MaskFormatter createFormatter(String s) {
         MaskFormatter formatter = null;
         try {
@@ -213,7 +225,7 @@ public class TextInputDemo extends JPanel
         fields[fieldNum++] = stateSpinner;
 
         zipField = new JFormattedTextField(
-                            createFormatter("#####"));
+                            createFormatter("#####-####"));
         fields[fieldNum++] = zipField;
 
         //Associate label/field pairs, add everything,
@@ -256,54 +268,6 @@ public class TextInputDemo extends JPanel
             "Alabama (AL)",
             "Alaska (AK)",
             "Arizona (AZ)",
-            "Arkansas (AR)",
-            "California (CA)",
-            "Colorado (CO)",
-            "Connecticut (CT)",
-            "Delaware (DE)",
-            "District of Columbia (DC)",
-            "Florida (FL)",
-            "Georgia (GA)",
-            "Hawaii (HI)",
-            "Idaho (ID)",
-            "Illinois (IL)",
-            "Indiana (IN)",
-            "Iowa (IA)",
-            "Kansas (KS)",
-            "Kentucky (KY)",
-            "Louisiana (LA)",
-            "Maine (ME)",
-            "Maryland (MD)",
-            "Massachusetts (MA)",
-            "Michigan (MI)",
-            "Minnesota (MN)",
-            "Mississippi (MS)",
-            "Missouri (MO)",
-            "Montana (MT)",
-            "Nebraska (NE)",
-            "Nevada (NV)",
-            "New Hampshire (NH)",
-            "New Jersey (NJ)",
-            "New Mexico (NM)",
-            "New York (NY)",
-            "North Carolina (NC)",
-            "North Dakota (ND)",
-            "Ohio (OH)",
-            "Oklahoma (OK)",
-            "Oregon (OR)",
-            "Pennsylvania (PA)",
-            "Rhode Island (RI)",
-            "South Carolina (SC)",
-            "South Dakota (SD)",
-            "Tennessee (TN)",
-            "Texas (TX)",
-            "Utah (UT)",
-            "Vermont (VT)",
-            "Virginia (VA)",
-            "Washington (WA)",
-            "West Virginia (WV)",
-            "Wisconsin (WI)",
-            "Wyoming (WY)"
         };
         return stateStrings;
     }
@@ -334,12 +298,10 @@ public class TextInputDemo extends JPanel
     }
 
     public static void main(String[] args) {
-        //Schedule a job for the event dispatch thread:
-        //creating and showing this application's GUI.
+
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                //Turn off metal's use of bold fonts
-	        UIManager.put("swing.boldMetal", Boolean.FALSE);
+            UIManager.put("swing.boldMetal", Boolean.FALSE);
                 createAndShowGUI();
             }
         });
