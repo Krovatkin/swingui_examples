@@ -1,21 +1,12 @@
 import java.awt.*;
-import java.awt.event.*;
-
 import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
+
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 
 import java.text.*;
 
-/**
- * FormattedTextFieldDemo.java requires no other files.
- *
- * It implements a mortgage calculator that uses four
- * JFormattedTextFields.
- */
 public class FormattedTextFieldDemo extends JPanel
                                     implements PropertyChangeListener {
     //Values for the fields
@@ -61,12 +52,14 @@ public class FormattedTextFieldDemo extends JPanel
 
         //Create the text fields and set them up.
         amountField = new JFormattedTextField(amountFormat);
-        amountField.setValue(new Double(amount));
+        amountField.setValue(Double.valueOf(amount));
         amountField.setColumns(10);
+        // !!! This is pretty cool. We can listen to changes to 
+        // any propert of a component
         amountField.addPropertyChangeListener("value", this);
 
         rateField = new JFormattedTextField(percentFormat);
-        rateField.setValue(new Double(rate));
+        rateField.setValue(Double.valueOf(rate));
         rateField.setColumns(10);
         rateField.addPropertyChangeListener("value", this);
 
@@ -74,12 +67,12 @@ public class FormattedTextFieldDemo extends JPanel
         // `setValue(Integer)` forces `numPeriodsField` to use
         // the default formatter for Integer
         // There are no default formatters for `Double` 
-        numPeriodsField.setValue(new Integer(numPeriods));
+        numPeriodsField.setValue(Integer.valueOf(numPeriods));
         numPeriodsField.setColumns(10);
         numPeriodsField.addPropertyChangeListener("value", this);
 
         paymentField = new JFormattedTextField(paymentFormat);
-        paymentField.setValue(new Double(payment));
+        paymentField.setValue(Double.valueOf(payment));
         paymentField.setColumns(10);
         paymentField.setEditable(false);
         paymentField.setForeground(Color.red);
@@ -123,14 +116,9 @@ public class FormattedTextFieldDemo extends JPanel
         }
 
         double payment = computePayment(amount, rate, numPeriods);
-        paymentField.setValue(new Double(payment));
+        paymentField.setValue(Double.valueOf(payment));
     }
 
-    /**
-     * Create the GUI and show it.  For thread safety,
-     * this method should be invoked from the
-     * event dispatch thread.
-     */
     private static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("FormattedTextFieldDemo");
