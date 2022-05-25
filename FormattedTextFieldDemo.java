@@ -7,6 +7,7 @@ import java.beans.PropertyChangeEvent;
 
 import java.text.*;
 
+// !!! TO SEE HOW TO USE MASKED FORMATTERS, GO TO TextInputDemo.java
 
 // A formatted text field's text and its value are two different properties, 
 // and the value often lags behind the text.
