@@ -32,7 +32,7 @@ public class FormattedTextFieldDemo extends JPanel
     private JFormattedTextField numPeriodsField;
     private JFormattedTextField paymentField;
 
-    //Formats to format and parse numbers
+    // set up in `setUpFormats`
     private NumberFormat amountFormat;
     private NumberFormat percentFormat;
     private NumberFormat paymentFormat;
@@ -44,13 +44,11 @@ public class FormattedTextFieldDemo extends JPanel
                                         rate,
                                         numPeriods);
 
-        //Create the labels.
         amountLabel = new JLabel(amountString);
         rateLabel = new JLabel(rateString);
         numPeriodsLabel = new JLabel(numPeriodsString);
         paymentLabel = new JLabel(paymentString);
 
-        //Create the text fields and set them up.
         amountField = new JFormattedTextField(amountFormat);
         amountField.setValue(Double.valueOf(amount));
         amountField.setColumns(10);
@@ -162,8 +160,6 @@ public class FormattedTextFieldDemo extends JPanel
         return answer;
     }
 
-    //Create and set up number formats. These objects also
-    //parse numbers input by user.
     private void setUpFormats() {
         amountFormat = NumberFormat.getNumberInstance();
 
