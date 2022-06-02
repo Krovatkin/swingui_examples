@@ -27,7 +27,11 @@ public class TextAreaDemo extends JFrame
         
         textArea.getDocument().addDocumentListener(this);
         
-    
+
+        // InputMap provides a binding between an input event and an Object. 
+        // InputMaps are usually used with an ActionMap, to determine an Action 
+        // to perform when a key is pressed
+
         InputMap im = textArea.getInputMap();
         ActionMap am = textArea.getActionMap();
         im.put(KeyStroke.getKeyStroke("ENTER"), COMMIT_ACTION);
@@ -42,6 +46,8 @@ public class TextAreaDemo extends JFrame
     }
     
     
+    // !!! not important at all
+    // mostly layout stuff
     private void initComponents() {
         jLabel1 = new JLabel("Try typing 'spectacular' or 'Swing'...");
         
@@ -135,6 +141,8 @@ public class TextAreaDemo extends JFrame
             if (match.startsWith(prefix)) {
                 // A completion is found
                 String completion = match.substring(pos - w);
+                // !!!!!!!! This is the way to modify documents
+                // outside notifications
                 // We cannot modify Document from within notification,
                 // so we submit a task that does the change later
                 SwingUtilities.invokeLater(
@@ -158,6 +166,7 @@ public class TextAreaDemo extends JFrame
         public void run() {
             textArea.insert(completion, position);
             textArea.setCaretPosition(position + completion.length());
+            // this creates a selection
             textArea.moveCaretPosition(position);
             mode = Mode.COMPLETION;
         }
@@ -165,6 +174,9 @@ public class TextAreaDemo extends JFrame
     
     private class CommitAction extends AbstractAction {
         public void actionPerformed(ActionEvent ev) {
+            // if we aren't completing `CommitAction`
+            //  which an `Enter` press should just
+            // insert a new line
             if (mode == Mode.COMPLETION) {
                 int pos = textArea.getSelectionEnd();
                 textArea.insert(" ", pos);
